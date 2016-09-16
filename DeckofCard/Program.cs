@@ -22,7 +22,28 @@ namespace ConsoleApplication
 
         public class Deck 
         {
-            public Card cards; 
+            public Card[] deck;
+            
+            public Deck()
+            {
+                deck = new Card[52];
+                Card cardSet = new Card();
+                int value_counter = cardSet.value.Length;
+
+                for (int i = 0; i < deck.Length; i++)
+                {
+                    for (int j = 0; j < cardSet.suit.Length; j++)
+                    {
+                        deck[i] = cardSet.suit[j];   
+                    }
+                }
+
+                
+                
+
+            }
+                // this property should have 52 unique cards 
+
 
             public void deal()
             {
@@ -46,7 +67,10 @@ namespace ConsoleApplication
         
         public static void Main(string[] args)
         {
-            Console.WriteLine();
+            Card test = new Card();
+            Deck newDeck = new Deck();
+
+            Console.WriteLine(test.suit);
         }
     }
 }
