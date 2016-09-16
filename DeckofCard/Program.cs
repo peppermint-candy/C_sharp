@@ -9,9 +9,22 @@ namespace ConsoleApplication
 
         public class Card 
         {
-            public string[] value = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
-            public string[] suit = {"C", "S", "H", "D"};
-            public int[] numerical_value = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+            // public string[] Value = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+            // public string[] suit = {"C", "S", "H", "D"};
+            // public int[] numerical_value = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+            // public string s_suit;
+            // public string s_value;
+
+            public string Value;
+            public string Suit;
+            public int numerical_value;
+            public Card(string card_suit, string card_value)
+            {
+                Suit = card_suit;
+                Value = card_value;
+                // numerical_value = num_card;
+            }
+
 
         }
 
@@ -22,25 +35,22 @@ namespace ConsoleApplication
 
         public class Deck 
         {
-            public Card[] deck;
+            public Card[] cards;
             
             public Deck()
             {
-                deck = new Card[52];
-                Card cardSet = new Card();
-                int value_counter = cardSet.value.Length;
+                cards = new Card[52];
+                var index = 0;
 
-                for (int i = 0; i < deck.Length; i++)
+                foreach (string suit in new [] { "Spades", "Hearts", "Clubs", "Diamonds"})
                 {
-                    for (int j = 0; j < cardSet.suit.Length; j++)
+                    foreach (string Value in new [] {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" })
                     {
-                        deck[i] = cardSet.suit[j];   
+                        cards[index] = new Card(suit, Value);
+                        index ++;
+                        
                     }
-                }
-
-                
-                
-
+                }       
             }
                 // this property should have 52 unique cards 
 
@@ -67,10 +77,11 @@ namespace ConsoleApplication
         
         public static void Main(string[] args)
         {
-            Card test = new Card();
+            // Card test = new Card();
             Deck newDeck = new Deck();
 
-            Console.WriteLine(test.suit);
+            Console.WriteLine(newDeck.cards);
+
         }
     }
 }
