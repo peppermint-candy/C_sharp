@@ -1,0 +1,75 @@
+NancyFx
+NancyFx is a lightweight framework for .NET and .NET Core. Before we jump into the full ASP.NET MVC Core framework, we're going to use Nancy to learn the fundamentals of how a .NET app is laid out. For those of you who have worked with Flask before, you may notice some similarities in the two frameworks' layout of routes and actions.
+
+The Super Duper Happy Path
+Nancy's developers follow what they call the "super-duper-happy-path", the idea that everything should be hassle-free and approachable. This design philosophy also focuses on staying out of the user's way, so that you require very little "Nancy" code to get your app working. This enables us to start creating simple apps very quickly, which is a great environment for our first foray into .NET Core.
+
+Helloooooo Nancy!
+Let's get started with a simple Hello World! app. Create a new project with dotnet new and adjust the project.json as shown in the previous tab.
+
+First things first, We're going to change our Program.cs file.
+
+namespace HelloNancy
+{
+ public class Program
+ {
+  public static void Main()
+  {
+   IWebHost host = new WebHostBuilder()
+    .Build();
+  }
+ }
+}
+To start we instantiate a new WebHost, which is an object that allows us to connect to a server and perform HTTP requests. Here we are creating a WebHost without configuring it, which isn't particularly useful, since it doesn't even know what it's supposed to connect to.
+
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+namespace HelloNancy
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            IWebHost host = new WebHostBuilder()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseKestrel()
+                .UseStartup<Startup>()
+                .Build();
+
+            host.Run();
+        }
+    }
+}
+Much better! We have added everything the WebHost needs to know what to do. ".UseContentRoot" tells the WebHost what folder to look for resources in. We tell the WebHost what kind of server to connect to with ".UseKestrel"; Kestrel is the cross platform server we use for hosting our projects. ".UseStartup" ensures that our Startup.cs will be executed. Finally we Run the WebHost to establish the connection.
+
+Now let's create a Startup.cs and put the following code in it.
+
+using Microsoft.AspNetCore.Builder;
+using Nancy.Owin;
+namespace HelloNancy
+{
+    public class Startup
+    {
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseOwin(x => x.UseNancy());
+        }
+    }
+}
+All that's happening here is that we're using OWIN to connect Nancy's libraries to our project. OWIN stands for "Open Web Interface for .NET", it allows us to connect any amount of middleware to our request/response pipeline. For our purposes this means we can use it to give third party code (in this case Nancy) access to handle HTTP requests.
+
+Now we will create the brain of our Nancy app. Nancy uses "Modules" to house the code that actually handles HTTP requests and sends out responses. We'll call ours HelloModule.cs. By convention all module names end in "Module".
+
+using Nancy;
+namespace HelloNancy
+{
+    public class HelloModule : NancyModule
+    {
+        public HelloModule()
+        {
+            Get("/", args => "Hello Nancy!");
+        }
+    }
+}
+You can see that our HelloModule class extends Nancy's NancyModule class. NancyModule gives us all the functionality we need to run our app. In this very simple module we define a Get route mapped to the pattern of "/", or the empty route. "args" holds any parameters that might be passed through the url, and the body after the fat arrow (=>) gets executed when the route is hit. Our super basic body will simply send the string "Hello Nancy!" to the browser where it gets displayed.
+
