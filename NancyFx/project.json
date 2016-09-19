@@ -4,14 +4,19 @@
   },
   "dependencies": {
     "Microsoft.NETCore.App": {
-      "version": "1.0.0",
-      "type": "platform"
+      "type": "platform",
+      "version": "1.0.0"
     },
+    "Nancy": "2.0.0-barneyrubble",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.Owin": "1.0.0",
-    "Nancy": "2.0.0-barneyrubble"
+    "Nancy.Session.InMemory": "0.9.1-pre",     //
+    "Nancy.Session.Persistable": "0.9.1-pre", // These are our new packages
+    "FSharp.Core": "4.0.1.7-alpha"              //
   },
   "frameworks": {
-    "netcoreapp1.0": {}
+    "netcoreapp1.0": {
+      "dependencies": {}
+    }
   }
 }

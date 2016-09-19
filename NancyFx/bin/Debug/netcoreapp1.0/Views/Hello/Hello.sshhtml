@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="Content/style.css"/>
+<!--<p>@ViewBag.{variablename}</p>-->
+@If.Context.ViewBag.show
+    <p>I only apprear if ViewBag.show is true!</p>
+@EndIf
+
+
+@Each 
+    <!--// @Current represents each value in the List one at a time-->
+    @Current
+@EndEach
+
+
+<!--we can only bind one iterable object tot a view at a time-->
+<!--You can pass additional objects to the FE through ViewBag, 
+but they must be placed in a wrapper class if you want to attach them to an @Each stm-->
+
+
+<!--@Each.Context.ViewBag.customWrapper.listOfThingsToDisplay
+ @Current
+@EndEach-->
+
+
+
+<!-- FORM SUBMISSIONS-->
+
+<form action="/formsubmitted" method="post">
+    <input type="text" name="Username" />
+</form>

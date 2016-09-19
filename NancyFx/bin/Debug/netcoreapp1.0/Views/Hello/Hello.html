@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="Content/style.css"/>
+<!--<p>@ViewBag.{variablename}</p>-->
+@If.Context.ViewBag.show
+    <p>I only apprear if ViewBag.show is true!</p>
+@EndIf
+
+
+@Each 
+    <!--// @Current represents each value in the List one at a time-->
+    @Current
+@EndEach
