@@ -212,10 +212,16 @@ namespace ConsoleApplication
 
 
         // ---------------- Overriding --------------------
-                Vehicle obj1 = new Vehicle(5);
-        Car obj2 = new Car(5);
-        obj1.GetInfo();
-        obj2.GetInfo();
+        //         Vehicle obj1 = new Vehicle(5);
+        // Car obj2 = new Car(5);
+        // obj1.GetInfo();
+        // obj2.GetInfo();
+
+
+        // ------------------- Interfaces ---------------
+        CanRun obj1 = new Ostrich();
+        CanRun obj2 = new Goat();
+
 
 
         }

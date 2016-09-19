@@ -1,0 +1,14 @@
+(Optional) Terminal RPG Encounter
+Using what we learned in the last assignment we could easily continue building these out into an entire Game. All we need to make this a reality is some simple game logic such as turns and a winning condition, an Enemy class with a few monster classes that inherit from it, and the ability to receive terminal input.
+
+You can easily get input from the console using the following line..
+
+string InputLine = Console.ReadLine();
+The console will prompt and wait for input which will then be saved to the variable InputLine as a string.
+
+ Create a basic encounter between a Ally party of a Ninja, Samurai, and Wizard vs two Zombies and a Spider
+ Create the Zombie and Spider class from the Enemy Class and build object for them and the heros
+ Build a turn system! Modulus and an array may help a lot here
+ Players use the text input to determine which attack to use
+ Zombies and the Spider attack random plays when it is their turn
+ If all enemies or all players healths are brought to 0hp then the encounter is over and you should announce the winner
