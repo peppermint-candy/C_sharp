@@ -14,6 +14,9 @@ namespace ConsoleApplication
             wizzy.heal();
             Console.WriteLine(wizzy.health);
 
+            Samurai sam = new Samurai("sam");
+            Samurai sung = new Samurai("sung");
+            Console.WriteLine(Samurai.how_many());
 
         }
     }

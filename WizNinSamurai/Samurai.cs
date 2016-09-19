@@ -4,6 +4,7 @@ namespace ConsoleApplication
 {
     public class Samurai : Human
     {
+        static int counter = 0;
         int strength { get; set; }
         int intelligence { get; set; }
         int dexterity { get; set; }
@@ -15,6 +16,8 @@ namespace ConsoleApplication
             intelligence = 3;
             dexterity = 3;
             health = 200;
+
+            counter ++;
         }
 
         public void death_blow(object obj)
@@ -38,6 +41,10 @@ namespace ConsoleApplication
             health = 200;
         }
 
-        
+        public static int how_many()
+        {
+            return counter;
+        }
+
     }
 }
