@@ -16,10 +16,11 @@ namespace GreatNumberGame
                     int rnd = new Random().Next(1,101);
                     Session["number"] = rnd;
                 }
+                ViewBag.display = "";
                 ViewBag.show = true;
                 Console.WriteLine(Session["number"]);
                 return View["Main"];
-                
+
              });
 
             Post("/guess", args => 
@@ -29,11 +30,15 @@ namespace GreatNumberGame
 
                 if (guess > (int)Session["number"])
                 {
+                    ViewBag.show = true;
                     ViewBag.display = "Too High!";
+                    return View["Main"];
                 }
                 else if (guess < (int)Session["number"])
                 {
+                    ViewBag.show = true;
                     ViewBag.display = "Too Low!";
+                    return View["Main"];
                 }
                 else
                 {
@@ -43,16 +48,9 @@ namespace GreatNumberGame
                     return View["Main"];
                 }
 
-                return Response.AsRedirect("/");
+                // return Response.AsRedirect("/") ;
             });
 
-            // Post("/formsubmitted", args =>
-            // {
-            //     string Username = Request.Form.Username;
-            //     return Response.AsRedirect("/");
-            // });
-
-            // Get("/{value:name}", args => "Hello " + args.name + "!");
 
             
 

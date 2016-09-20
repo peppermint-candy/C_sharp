@@ -11,9 +11,9 @@
             <p>I am thinking of a number between 1 and 100</p>
             <p>Take a guess!</p>
 
-            @Context.ViewBag.display.HaveMessage
 
             @If.Context.ViewBag.show
+            @ViewBag.display
             <form action="/guess" method="post">
                 <input type="number" name="Guessing" min=0 max=100 required />
                 <input type="submit" value="Submit" />
