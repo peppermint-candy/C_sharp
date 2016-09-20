@@ -13,6 +13,7 @@ namespace HelloNancy
 
                 List<string> listOfStuffToDisplay = new List<string> {"things", "other things", "another things"};                
                 return View["Hello", listOfStuffToDisplay];
+                // return View["Hello/Hello.sshtml"];
             });
 
             Post("/template", args => 

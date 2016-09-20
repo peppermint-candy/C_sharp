@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace ConsoleApplication
 {
     public class Program
@@ -17,6 +18,10 @@ namespace ConsoleApplication
             Samurai sam = new Samurai("sam");
             Samurai sung = new Samurai("sung");
             Console.WriteLine(Samurai.how_many());
+
+            // bool related = typeof(Wizard).IsSubclassOf(typeof(Human));
+
+            // Console.WriteLine(related);
 
         }
     }

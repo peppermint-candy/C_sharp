@@ -1,0 +1,48 @@
+div.ct {
+    width: 750px;
+    min-height: 500px;
+    vertical-align: top;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: cornflowerblue;
+    text-align: center;
+}
+
+
+div.wrong {
+    width: 500px;
+    height: 300px;
+    border: 2px solid black;
+    vertical-align: top;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: red;
+    text-align: center;
+    padding-top: 100px;
+    color: black;
+}
+
+div.correct {
+    width: 500px;
+    height: 300px;
+    border: 2px solid black;
+    vertical-align: top;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    padding-top: 100px;
+    background-color: mediumseagreen;
+}
+
+div.neutral {
+    width: 500px;
+    height: 300px;
+    border: 2px solid black;
+    vertical-align: top;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+form {
+    margin: 10 auto;
+}
