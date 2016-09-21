@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <title>Ninja Gold with C#</title>
+        <link rel="stylesheet" href="Content/style.css">
+    </head>
+    <body>
+        <div class="ct">
+            <h3>Your Gold: @ViewBag.coin</h3>
+            <div class="box">
+                <h2>Farm</h2>
+                <p>(earns 10-20 golds)</p>
+
+                <form action="/processing" method="post">
+                    <input type="submit" value="Find Gold!">
+                    <input type="hidden" name="location" value="Farm">
+                </form>
+            </div>
+
+            <div class="box">
+                <h2>Cave</h2>
+                <p>(earns 5-10 golds)</p>
+
+                <form action="/processing" method="post">
+                    <input type="submit" value="Find Gold!">
+                    <input type="hidden" name="location" value="Cave">
+                </form>
+            </div>
+
+            <div class="box">
+                <h2>House</h2>
+                <p>(earns 2-5 golds)</p>
+
+                <form action="/processing" method="post">
+                    <input type="submit" value="Find Gold!">
+                    <input type="hidden" name="location" value="House">
+                </form>
+            </div>
+
+            <div class="box">
+                <h2>Casino</h2>
+                <p>(earns/takes 0-50 golds)</p>
+
+                <form action="/processing" method="post">
+                    <input type="submit" value="Find Gold!">
+                    <input type="hidden" name="location" value="Casino">
+                </form>
+           </div>
+
+           <div class="log">
+               <p>@ViewBag.log</p>
+           </div>
+        </div>
+    </body>
+</html>
