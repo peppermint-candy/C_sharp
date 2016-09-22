@@ -1,0 +1,36 @@
+Getting Started
+Now it's time to learn the ASP.NET Core Mvc syntax. This requires more setup than NancyFx did, but it comes with a lot more power and versatility. As always, in order to configure your project we start with project.json:
+
+{
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+     "Microsoft.NETCore.App": {
+        "type": "platform",
+        "version": "1.0.1"
+      },
+      "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+      "Microsoft.AspNetCore.Mvc": "1.0.0"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {}
+    }
+  }
+}
+After a dotnet restore we now have the Mvc tools available for our project. Configuration is not done yet though! We still have to tell our app to use these tools. Create a Startup.cs file and put the following code into it:
+
+using Microsoft.Extensions.DependencyInjection;
+namespace YourNamespace
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+    }
+}
+Program.cs will look the same as it did previously, go ahead and copy it over from an older assignment.
+At its most basic that's all we need to activate the Mvc, however we still need to learn how to apply the new tools at our command. 

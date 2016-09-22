@@ -73,3 +73,64 @@ namespace HelloNancy
 }
 You can see that our HelloModule class extends Nancy's NancyModule class. NancyModule gives us all the functionality we need to run our app. In this very simple module we define a Get route mapped to the pattern of "/", or the empty route. "args" holds any parameters that might be passed through the url, and the body after the fat arrow (=>) gets executed when the route is hit. Our super basic body will simply send the string "Hello Nancy!" to the browser where it gets displayed.
 
+
+
+------------------------
+
+Calling APIs from the Backend
+In the past you've made API calls from the frontend using JQuery, but we can also make them from the backend. Depending on the situation there are advantages to using one method or the other. Frontend API calls take weight off the server and are appropriate when we don't care how often an HttpRequest is made. On the other hand, when we're dealing with a sensitive API access key, we don't want to expose it where users can see it. This is when backend API calls become important. In addition, if we're using a free API and only have a limited number of times we can access it per day or hour, it may be a good idea to make a backend call and cache the results rather than repeating that call for every user.
+
+In order to make backend API calls we're going to create a helper class which contains a method capable of creating HTTPRequests. Start with a file called ApiCaller.cs and put the following code inside:
+
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+namespace ApiCaller
+{
+    public class WebRequest
+    {
+        public static async Task SendRequest(string address, Action<Dictionary<string, object>> Callback)
+        {
+            // Create a temporary HttpClient connection.
+            using (var Client = new HttpClient())
+            {
+                try
+                {
+                    Client.BaseAddress = new Uri(address);
+                    HttpResponseMessage Response = await Client.GetAsync(""); // Make the actual API call.
+                    Response.EnsureSuccessStatusCode(); // Throw error if not successful.
+                    string StringResponse = await Response.Content.ReadAsStringAsync(); // Read in the response as a string.
+                    // Then parse the result into JSON and convert to a dictionary that we can use.
+                    Dictionary<string, object> JsonResponse =
+          JsonConvert.DeserializeObject<Dictionary<string, object>>(StringResponse);
+                    // Finally, execute our callback, passing it the response we got.
+                    Callback(JsonResponse);
+                }
+                catch (HttpRequestException e)
+                {
+                    // If something went wrong, display the error.
+                    Console.WriteLine($"Request exception: {e.Message}");
+                }
+            }
+        }
+    }
+}
+Now, by using the namespace ApiCaller, we can use the WebRequest.SendRequest method by passing it a url and a callback to use the result in our code. Here's an example of how to use SendRequest
+
+using ApiCaller;
+...
+Get("/", async args =>
+{
+ string Name = "";
+ await WebRequest.SendRequest("http://pokeapi.co/api/v2/pokemon/1", new
+     Action<Dictionary<string, object>>( JsonResponse =>
+  {
+   Name = (string)JsonResponse["name"];
+  }
+ ));
+ Console.WriteLine(Name); // bulbasaur
+ Return ...
+});
+By declaring the route as asynchronous we can use the async method SendRequest within it. the await keyword tells the code to pause until the method finishes executing. We can even access local variables in our callback, unlike Javascript.
