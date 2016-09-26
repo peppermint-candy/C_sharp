@@ -26,12 +26,23 @@ namespace ApiCaller
                 }
                 ));
 
+                List<object> type = new List<object>(); 
+
                 IEnumerable mylist = Primary_type as IEnumerable;
                 foreach (object item in mylist)
                 {
                     foreach (object i in (IEnumerable)item)
                     {
-                        Console.WriteLine(i);
+                        foreach(object j in (IEnumerable)i)
+                        {
+                            foreach (object k in (IEnumerable)j)
+                            {
+                                foreach (object l in (IEnumerable)k)
+                                {
+                                    type.Add(l);          
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -41,10 +52,22 @@ namespace ApiCaller
 
 
                 Console.WriteLine(Name); // bulbasaur
-                // Console.WriteLine(Primary_type);
+                Console.WriteLine();
                 Console.WriteLine(Height);
                 Console.WriteLine(Weight);
-                return Name;
+
+                Dictionary<string, object> summary = new Dictionary<string, object>();
+                summary.Add("Name", Name);
+                summary.Add("Type", type[1].ToString());
+                summary.Add("Type2", type[3].ToString());
+                summary.Add("Height", Height);
+                summary.Add("Weight", Weight);
+
+
+                // Console.WriteLine(string.Join(", ", summary));
+                
+
+                return Response.AsJson(summary);
             });
         }
     }
