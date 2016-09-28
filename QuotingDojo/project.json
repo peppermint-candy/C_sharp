@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true,
+    "copyToOutput": ["Views/Quoting/*","Content/style.css"]
+  },
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version" : "1.0.0",
+      "type" : "platform"
+    },
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.AspNetCore.owin": "1.0.0",
+    "Nancy": "2.0.0-barneyrubble",
+    "MySqlConnector": "0.1.0-alpha12",
+    "Microsoft.Extensions.Logging.Console": "1.0.0"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {}
+    }
+  }
+}

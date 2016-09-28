@@ -6,7 +6,8 @@
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
-      "type": "platform"
+      "type": "platform",
+      "MySqlConnector": "0.1.0-alpha12" // This package connects our app to the database
     },
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.Owin": "1.0.0",
@@ -17,7 +18,12 @@
   },
   "frameworks": {
     "netcoreapp1.0": {
-       "dependencies": {}
+       "dependencies": {
+         "Microsoft.NETCore.App": {
+           "type": "platform",
+           "version": "1.0.0"
+         }
+       }
     }
   }
 }

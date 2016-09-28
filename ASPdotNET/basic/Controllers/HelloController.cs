@@ -1,12 +1,21 @@
-using System;
-
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 namespace basic
 {
-    public class test
+    public class HelloController : Controller
     {
-        public test()
+        [HttpGet]
+        [Route("index")]
+        public IActionResult Index()
         {
-            Console.WriteLine("test");
+            return View();
+            // return View("Index");
+            //return View("Index.cshtml");
         }
+
+
+
+
     }
 }   
