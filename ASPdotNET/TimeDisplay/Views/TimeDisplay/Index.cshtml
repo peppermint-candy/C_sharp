@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Time Display</title>
+        <link rel="stylesheet" href="~/css/style.css"/>
+    </head>
+    <body>
+        <div class="ct">
+            <h3>The time is now:</h3>
+            <div class="display">
+                @{ var CurrentTime = DateTime.Now;}
+                <h1> @CurrentTime </h1>
+            </div>
+        </div>
+    </body>
+</html>

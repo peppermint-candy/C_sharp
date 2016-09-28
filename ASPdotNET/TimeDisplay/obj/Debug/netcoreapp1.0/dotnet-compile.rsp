@@ -1,5 +1,5 @@
---temp-output:c:\Users\Adam\Desktop\mint\c#\aspdotnet\basic\obj\Debug\netcoreapp1.0\
---out:c:\Users\Adam\Desktop\mint\c#\aspdotnet\basic\bin\Debug\netcoreapp1.0\basic.dll
+--temp-output:c:\Users\Adam\Desktop\mint\c#\aspdotnet\timedisplay\obj\Debug\netcoreapp1.0\
+--out:c:\Users\Adam\Desktop\mint\c#\aspdotnet\timedisplay\bin\Debug\netcoreapp1.0\timedisplay.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -7,8 +7,9 @@
 --suppress-warning:CS1702
 --suppress-warning:CS1705
 --optimize:False
+--debug-type:portable
 --emit-entry-point:True
---output-name:basic
+--output-name:timedisplay
 --file-version:1.0.0.0
 --version:1.0.0.0
 --informational-version:1.0.0
@@ -161,7 +162,7 @@
 --reference:C:\Users\Adam\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\Adam\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\Adam\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"c:\Users\Adam\Desktop\mint\c#\aspdotnet\basic\obj\Debug\netcoreapp1.0\basicdotnet-compile.deps.json",basic.deps.json
-c:\Users\Adam\Desktop\mint\c#\aspdotnet\basic\Program.cs
-c:\Users\Adam\Desktop\mint\c#\aspdotnet\basic\Startup.cs
-c:\Users\Adam\Desktop\mint\c#\aspdotnet\basic\Controllers\HelloController.cs
+--resource:"c:\Users\Adam\Desktop\mint\c#\aspdotnet\timedisplay\obj\Debug\netcoreapp1.0\timedisplaydotnet-compile.deps.json",timedisplay.deps.json
+c:\Users\Adam\Desktop\mint\c#\aspdotnet\timedisplay\Program.cs
+c:\Users\Adam\Desktop\mint\c#\aspdotnet\timedisplay\Startup.cs
+c:\Users\Adam\Desktop\mint\c#\aspdotnet\timedisplay\Controllers\TimeDisplayController.cs
