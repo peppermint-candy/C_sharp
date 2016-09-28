@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title></title>
+        <link rel="stylesheet" href="~/css/style.css"/>
+    </head>
+    <body>
+        <div class="ct">
+            <div class="box">
+                <h2>Submitted Info</h2>
+                <p>
+                    <label for="name">Name:</label>
+                    @ViewBag.name
+                </p>
+
+                <p>
+                    <label for="loc">Dojo Location:</label>
+                    @ViewBag.location
+                </p>
+
+                <p>
+                    <label for="lan">Favorite Language:</label>
+                    @ViewBag.language
+                </p>
+
+                <p>
+                    <label for="comment">Comment:</label>
+                    @ViewBag.comment
+                </p>     
+
+                <p>
+                    <form action="/" method="get">
+                        <input type="submit" value="Go Back">
+                    </form>
+                </p>           
+            </div>
+        </div>
+    </body>
+</html>

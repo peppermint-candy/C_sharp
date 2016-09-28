@@ -1,0 +1,23 @@
+div.ct {
+    width: 970px;
+    height: 500px;
+    vertical-align: top;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+div.box {
+    width: 500px;
+    height: 400px;
+    vertical-align: top;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid black;
+}
+
+label {
+    width: 200px;
+    margin-right: 10px;
+    text-align: left;
+    display: inline-block;
+}

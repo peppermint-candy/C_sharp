@@ -1,5 +1,7 @@
 Getting Started
-Now it's time to learn the ASP.NET Core Mvc syntax. This requires more setup than NancyFx did, but it comes with a lot more power and versatility. As always, in order to configure your project we start with project.json:
+Now it's time to learn the ASP.NET Core Mvc syntax. 
+This requires more setup than NancyFx did, but it comes with a lot more power and versatility. 
+As always, in order to configure your project we start with project.json:
 
 {
   "buildOptions": {
@@ -19,7 +21,11 @@ Now it's time to learn the ASP.NET Core Mvc syntax. This requires more setup tha
     }
   }
 }
-After a dotnet restore we now have the Mvc tools available for our project. Configuration is not done yet though! We still have to tell our app to use these tools. Create a Startup.cs file and put the following code into it:
+
+
+After a dotnet restore we now have the Mvc tools available for our project. 
+Configuration is not done yet though! We still have to tell our app to use these tools. 
+Create a Startup.cs file and put the following code into it:
 
 using Microsoft.Extensions.DependencyInjection;
 namespace YourNamespace
@@ -32,12 +38,18 @@ namespace YourNamespace
         }
     }
 }
+
+
+
 Program.cs will look the same as it did previously, go ahead and copy it over from an older assignment.
-At its most basic that's all we need to activate the Mvc, however we still need to learn how to apply the new tools at our command. 
+At its most basic that's all we need to activate the Mvc, 
+however we still need to learn how to apply the new tools at our command. 
 
 
 Controllers
-Now that we have ASP.NET Core Mvc configured it's time to put it into use. The next step is to create a controller. Controllers live in a folder called Controllers. Our example controller will be called "HelloController":
+Now that we have ASP.NET Core Mvc configured it's time to put it into use. 
+The next step is to create a controller. Controllers live in a folder called Controllers. 
+Our example controller will be called "HelloController":
 
 
 
@@ -57,7 +69,11 @@ namespace YourNamespace.Controllers
   }
  }
 }
-Now we have to set up a route that will connect to our controller method. Open up your Startup.cs and add a new method called "Configure"
+
+
+
+Now we have to set up a route that will connect to our controller method.
+ Open up your Startup.cs and add a new method called "Configure"
 
 public void Configure(IApplicationBuilder App)
         {
@@ -70,7 +86,12 @@ public void Configure(IApplicationBuilder App)
                 );
             });
         }
-If you run your code now you"ll see the message "Hello World!" displayed in the browser. But we don't make controllers that just show a string in the browser very often do we? We want to serve up view files! We'll learn how in the next tab.
+
+
+
+If you run your code now you"ll see the message "Hello World!" displayed in the browser. 
+But we don't make controllers that just show a string in the browser very often do we? 
+We want to serve up view files! We'll learn how in the next tab.
 
 Routing
 ASP.NET Core Mvc has some of the simplest routing of any full MVC framework.
@@ -90,7 +111,10 @@ public IActionResult Other()
 {
  ...
 }
-[HttpGet] is optional on GET routes, but all POST routes must have an [HttpPost] before them. A route of Route("template") will match the url localhost:5000/template.
+
+
+[HttpGet] is optional on GET routes, but all POST routes must have an [HttpPost] before them.
+ A route of Route("template") will match the url localhost:5000/template.
 
 We can also accept parameters in our routes:
 
@@ -101,17 +125,30 @@ public IActionResult Method(string Name)
 {
  ...
 }
+
+
 Be aware, if your method expects to receive a parameter through the url it will break if it doesn't receive one.
 
-Now add a route to your controller and run your code. you"ll see the message "Hello World!" displayed in the browser. But we don't make controllers that just show a string in the browser very often do we? We want to serve up view files! We'll learn how in the next tab.
+Now add a route to your controller and run your code. 
+you"ll see the message "Hello World!" displayed in the browser. 
+But we don't make controllers that just show a string in the browser very often do we? 
+We want to serve up view files! We'll learn how in the next tab.
 
 
 Serving View Files
-ASP.NET Core makes serving views a breeze. The framework comes equipped with powerful tools for finding your views wherever they may be. All of our views will be .cshtml files, which are capable of running embedded C# code by default. We'll make more use of this power later, for now let's just try serving up a static page.
+ASP.NET Core makes serving views a breeze. 
+The framework comes equipped with powerful tools for finding your views wherever they may be.
+ All of our views will be .cshtml files, which are capable of running embedded C# code by default.
+  We'll make more use of this power later, for now let's just try serving up a static page.
 
 
 
-Even though we're only working with static HTML here, we still need a .cshtml file because ASP.NET Core Mvc will not read a standard .html file without extra configuration. This enables the framework to compile the HTML and therefore detect changes in it, so we don't have to trick it like we did with Nancy. it only takes one line in our project.json to serve html:
+Even though we're only working with static HTML here, 
+we still need a .cshtml file because ASP.NET Core Mvc will not read a standard 
+.html file without extra configuration. 
+This enables the framework to compile the HTML and therefore detect changes in it,
+ so we don't have to trick it like we did with Nancy. 
+ it only takes one line in our project.json to serve html:
 
 ...
   "buildOptions": {
@@ -156,31 +193,122 @@ namespace YourNamespace.Controllers
   }
  }
 }
-ASP.NET Core Mvc is very flexible when it comes to designating our targeted view. If we have an empty View() then it will look for a view with the same name as the method serving the view. We can also specify the name of the file with or without an extension.
+
+
+
+ASP.NET Core Mvc is very flexible when it comes to designating our targeted view. 
+If we have an empty View() then it will look for a view with the same name as the method serving the view.
+ We can also specify the name of the file with or without an extension.
 
 Now let's add a tiny bit of styling. Create a folder structure that looks like this.
 
 
 
-The name wwwroot is a convention that tells the compiler where to find static content other than views, and the folder name inside corresponds to the name of our controller.
+The name wwwroot is a convention that tells the compiler where to find static content other than views,
+ and the folder name inside corresponds to the name of our controller.
 
 In our style.cssfile:
 
 h1{
     color: red;
 }
-If we restore and run our project we'll see our html displayed on the browser, but the color from our css isn't being displayed. Don't worry, the solution is easy. With another dependency and one line in our configuration we can get rid of the issue forever. In our project.json:
+If we restore and run our project we'll see our html displayed on the browser, 
+but the color from our css isn't being displayed. Don't worry, the solution is easy.
+ With another dependency and one line in our configuration we can get rid of the issue forever. 
+ In our project.json:
 
 ...
   "dependencies": {
       ...
       "Microsoft.AspNetCore.StaticFiles": "1.0.0"
 ...
-Next we have to configure our project to use this new dependency. That means it's time to move over to the Startup.cs file.
+Next we have to configure our project to use this new dependency. 
+That means it's time to move over to the Startup.cs file.
 
 public void Configure(IApplicationBuilder App)
 {
     App.UseStaticFiles();
     ...
 }
-Run restore again and then run the project, you should see the styling appear as expected. This is also how we include images, javascript, or any other static files other than views.
+Run restore again and then run the project, you should see the styling appear as expected. 
+This is also how we include images, javascript, or any other static files other than views.
+
+
+Submitting Forms
+Conveniently, When submitting forms we don't have to do anything special on the front end. 
+Simply write HTML forms as you would normally, making sure that each input field has a name. 
+On the back end we can catch those submissions by accepting them as parameters in their targeted method.
+
+[HttpPost]
+public IActionResult Method(string InputName, int InputNumber)
+{
+ ...
+}
+With that, we can use those parameters in our method. 
+It is key that the variable names we use here match the names on the input fields on the front end.
+
+Sending Data to the Front End
+Just like with Nancy, we use ViewBag to send information to the front end:
+
+...
+ViewBag.Info = MyVariable;
+...
+In the next tab we'll talk about how we can handle this information on the front end.
+
+
+Razor View Engine
+When we were working with Nancy we used their Super Simple View Engine,
+ but we repeatedly had to work around its limitations. 
+ Thankfully, we never need to deal with those limitations ever again. 
+Now that we're using ASP.NET Core Mvc, we have access to the Razor View Engine.
+And we don't even have to configure it, 
+Razor is enabled by default! Simply put Razor allows us to write C# code directly in our HTML.
+In addition, we can embed HTML in our embedded C#, and switch between the two as much as we like.
+
+To access our ViewBag we have to precede it with an @ symbol.
+
+...
+<body>
+<p>@ViewBag.SomeVariable</p>
+</body>
+This is also how we can embed any C# variable on the front end.
+
+If we want to put a block of code in our HTML we similarly preface it with the @, 
+and wrap it in curly braces. In this way we can use loop, conditionals, or any other operation we may want.
+
+...
+<body>
+@{
+    foreach(string Current in ViewBag.ListOfStrings)
+    {
+        <p>@Current</p>
+    }
+}
+</body>
+We can embed as many times as we like:
+
+...
+<body>
+@{
+    foreach(string Current in ViewBag.ListOfStrings)
+    {
+ <div>
+  <p>@Current</p>
+  @if(Current.Length > 4)
+  {
+   <p>is a long word</p>
+  }
+        </div>
+    }
+}
+</body>
+It's also possible to have local variables that exist only on the front end.
+
+...
+<body>
+ @{
+  string DisplayString = "I'm a string!";
+ }
+
+ <p>@DisplayString</p>
+</body>
