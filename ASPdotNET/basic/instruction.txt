@@ -312,3 +312,103 @@ It's also possible to have local variables that exist only on the front end.
 
  <p>@DisplayString</p>
 </body>
+
+
+
+
+Redirecting
+Sometimes we want to redirect to other controller methods rather than rendering a view. 
+In ASP.NET Core Mvc we use the RedirectToAction() response. 
+Redirecting can also be done based on routes, but RedirectToAction is preferable 
+because our routes are more likely to change as our code develops than our controller method names.
+
+The method accepts a string that corresponds to the name of another method in your controller.
+
+...
+public IActionResult Method()
+{
+ return RedirectToAction("OtherMethod");
+}
+If the method you want to redirect to has url parameters you can include them too:
+
+...
+public IActionResult Method()
+{
+ return RedirectToAction("OtherMethod", new {parameter = "this is a string"});
+}
+
+[HttpGet]
+[Route("other/{parameter}")]
+public IActionResult OtherMethod(string parameter)
+{
+ ...
+}
+If you want to redirect to another controller's method, we have to specify the controller name as well as the method name.
+
+...
+public IActionResult Method()
+{
+ return RedirectToAction("OtherMethod", "OtherController", new {parameter = "this is a string"});
+
+
+ Session and TempData
+Session
+If we want our data to persist across multiple HTTP requests we're going to need to use session. 
+We'll have to add session as a dependency since it's not included with ASP.NET Core Mvc by default. 
+As usual, we'll start with project.json:
+
+...
+"dependencies": {
+ ...
+ "Microsoft.AspNetCore.Session": "1.0.0"
+}
+Now we move over to Startup.cs:
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+namespace YourNamespace
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+     services.AddMvc();
+            services.AddSession();
+        }
+        public void Configure(IApplicationBuilder app)
+        {
+            ...
+            app.UseSession();
+            ...
+        }
+    }
+}
+And with that we have session available for use. There are some limitations to the kind of data we can store in session. 
+In ASP.NET Core Mvc we can only use session to hold on to integers and strings by default. 
+We have to specify what kind of data the session contains both when we set it, and when we get it.
+
+using Microsoft.AspNetCore.Http;
+...
+HttpContext.Session.SetString("Key", "Value");
+...
+HttpContext.Session.GetString("Key");
+...
+HttpContext.Session.SetInt32("OtherKey", 123);
+...
+HttpContext.Session.GetInt32("OtherKey");
+But just because these are the only data types session is designed to hold, doesn't mean we can't configure it to store other things. 
+We can write a class that lets us serialize
+
+public static class SessionExtensions
+{
+    public static void SetObjectAsJson(this ISession session, string key, object value)
+    {
+        session.SetString(key, JsonConvert.SerializeObject(value));
+    }
+    public static T GetObjectFromJson<T>(this ISession session, string key)
+    {
+        var value = session.GetString(key);
+        return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+    }
+}

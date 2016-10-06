@@ -1,0 +1,30 @@
+div.ct {
+    background-color: goldenrod;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 980px;
+    height: 800px;
+    vertical-align: top;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid black;
+}
+
+div.box {
+    height: 150px;
+    width: 200px;
+    vertical-align: top;
+    display: inline-block;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+    border: 4px solid black;
+}
+
+div.log {
+    height: 200px;
+    width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 4px solid black;
+    vertical-align: top;
+}

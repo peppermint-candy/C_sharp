@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 namespace basic
 {
     public class Startup
@@ -7,6 +8,7 @@ namespace basic
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder App)
@@ -21,6 +23,8 @@ namespace basic
             });
 
             App.UseStaticFiles();
+
+            App.UseSession();
         }   
     }
 }
